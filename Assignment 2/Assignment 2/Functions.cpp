@@ -3,12 +3,14 @@
 // LinkedList implementation
 LinkedList::LinkedList() : headPtr(nullptr), tailPtr(nullptr) {}
 
+// Destructor to free memory
 LinkedList::~LinkedList() {
     while (headPtr) {
         pop_front();
     }
 }
 
+// Add to front
 void LinkedList::push_front(int value) {
     Node* newNode = new Node(value);
     newNode->nextPtr = headPtr;
@@ -16,6 +18,7 @@ void LinkedList::push_front(int value) {
     if (!tailPtr) tailPtr = newNode;
 }
 
+// Add to back
 void LinkedList::push_back(int value) {
     Node* newNode = new Node(value);
     if (!tailPtr) {
@@ -26,6 +29,7 @@ void LinkedList::push_back(int value) {
     }
 }
 
+// Remove from front
 void LinkedList::pop_front() {
     if (!headPtr) return;
     Node* temp = headPtr;
@@ -34,6 +38,7 @@ void LinkedList::pop_front() {
     if (!headPtr) tailPtr = nullptr;
 }
 
+// Remove from back
 void LinkedList::pop_back() {
     if (!headPtr) return;
     if (headPtr == tailPtr) {
@@ -50,6 +55,7 @@ void LinkedList::pop_back() {
     tailPtr->nextPtr = nullptr;
 }
 
+// Insert at index
 void LinkedList::insert(size_t index, int value) {
     if (index == 0) {
         push_front(value);
@@ -66,6 +72,7 @@ void LinkedList::insert(size_t index, int value) {
     if (!newNode->nextPtr) tailPtr = newNode;
 }
 
+// Remove at index
 bool LinkedList::remove(size_t index) {
     if (!headPtr) return false;
     if (index == 0) {
@@ -84,6 +91,7 @@ bool LinkedList::remove(size_t index) {
     return true;
 }
 
+// Find value
 size_t LinkedList::find(int value) const {
     Node* curr = headPtr;
     size_t index = 0;
@@ -95,15 +103,45 @@ size_t LinkedList::find(int value) const {
     return static_cast<size_t>(-1); // Not found
 }
 
+// Print list
 void LinkedList::print() const {
     Node* curr = headPtr;
     while (curr) {
-        std::cout << curr->data << " ";
+        cout << curr->data << " ";
         curr = curr->nextPtr;
     }
-    std::cout << std::endl;
+    cout << endl;
 }
 
-// Numbers implementation
-Numbers::Numbers() : num(0) {}
-Numbers::Numbers(int n) : num(n) {}
+// Stack implementation
+
+// Insert value
+void Stack::push(int value) {
+    data.push_back(value);
+}
+
+// Remove top element
+void Stack::pop() {
+    if (!data.empty())
+        data.pop_back();
+}
+
+// Check if empty
+bool Stack::isEmpty() const {
+    return data.empty();
+}
+
+// Get top element
+int Stack::top() const {
+    if (!data.empty())
+        return data.back();
+    throw out_of_range("Stack is empty");
+}
+
+// Get average
+double Stack::average() const {
+    if (data.empty()) return 0.0;
+    int sum = 0;
+    for (int val : data) sum += val;
+    return static_cast<double>(sum) / data.size();
+}

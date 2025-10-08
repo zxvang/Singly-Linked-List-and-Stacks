@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <vector> // Add this line for std::vector
 
 using namespace std;
 
@@ -29,14 +30,13 @@ public:
     void print() const;
 };
 
-class Numbers {
-protected:
-    int num;
-
+class Stack {
+private:
+    vector<int> data;
 public:
-    Numbers(); // Default constructor
-    Numbers(int n); // Overload constructor
-
-    int getNum() const { return num; } // Accessor
-    void setNum(int n) { num = n; } // Mutator
+    void push(int value);           // Insert value
+    void pop();                     // Remove top element
+    bool isEmpty() const;           // Check if empty
+    int top() const;                // Get top element
+    double average() const;         // Get average
 };
