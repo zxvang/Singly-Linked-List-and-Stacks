@@ -104,7 +104,7 @@
 
 <img width="375" height="57" alt="Screenshot 2025-10-15 180717" src="https://github.com/user-attachments/assets/44334e2b-9aa6-4d19-a10e-9b6fb87caace" />
 
-#### Error Handling
+### Error Handling
 - This will be outputted when anything besides an iteger is taken in from the user.
 
 <img width="425" height="78" alt="Screenshot 2025-10-15 180220" src="https://github.com/user-attachments/assets/ff80e96b-7224-4ae6-b9c3-6b5c084b1bfa" />
