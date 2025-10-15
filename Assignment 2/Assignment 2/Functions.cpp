@@ -1,9 +1,9 @@
 #include "Headers.h"
 
 // LinkedList implementation
-LinkedList::LinkedList() : headPtr(nullptr), tailPtr(nullptr) {}
+LinkedList::LinkedList() : headPtr(nullptr), tailPtr(nullptr), num_items(0) {}
 
-// Destructor to free memory
+
 LinkedList::~LinkedList() {
     while (headPtr) {
         pop_front();
@@ -16,6 +16,7 @@ void LinkedList::push_front(int value) {
     newNode->nextPtr = headPtr;
     headPtr = newNode;
     if (!tailPtr) tailPtr = newNode;
+    ++num_items; // Update count
 }
 
 // Add to back
@@ -27,6 +28,7 @@ void LinkedList::push_back(int value) {
         tailPtr->nextPtr = newNode;
         tailPtr = newNode;
     }
+    ++num_items; // Update count
 }
 
 // Remove from front
@@ -36,6 +38,7 @@ void LinkedList::pop_front() {
     headPtr = headPtr->nextPtr;
     delete temp;
     if (!headPtr) tailPtr = nullptr;
+    --num_items; // Update count
 }
 
 // Remove from back
@@ -44,6 +47,7 @@ void LinkedList::pop_back() {
     if (headPtr == tailPtr) {
         delete headPtr;
         headPtr = tailPtr = nullptr;
+        --num_items; // Update count
         return;
     }
     Node* curr = headPtr;
@@ -53,6 +57,7 @@ void LinkedList::pop_back() {
     delete tailPtr;
     tailPtr = curr;
     tailPtr->nextPtr = nullptr;
+    --num_items; // Update count
 }
 
 // Insert at index
@@ -70,6 +75,7 @@ void LinkedList::insert(size_t index, int value) {
     newNode->nextPtr = curr->nextPtr;
     curr->nextPtr = newNode;
     if (!newNode->nextPtr) tailPtr = newNode;
+    ++num_items; // Update count
 }
 
 // Remove at index
@@ -88,6 +94,7 @@ bool LinkedList::remove(size_t index) {
     curr->nextPtr = temp->nextPtr;
     if (temp == tailPtr) tailPtr = curr;
     delete temp;
+    --num_items; // Update count
     return true;
 }
 

@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
-#include <vector> // Add this line for std::vector
+#include <vector>
+#include <limits>
+#include <string>
 
 using namespace std;
 
@@ -15,6 +17,7 @@ class LinkedList {
 private:
     Node* headPtr;
     Node* tailPtr;
+    size_t num_items;
 
 public:
     LinkedList();
@@ -28,6 +31,8 @@ public:
     bool remove(size_t index);
     size_t find(int value) const;
     void print() const;
+
+    size_t size() const { return num_items; }
 };
 
 class Stack {
